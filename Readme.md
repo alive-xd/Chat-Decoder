@@ -63,8 +63,8 @@ ReconX is my contribution to make recon faster, smarter, and more accessible to 
 ## 📫 Get in Touch
 
 - 🔗 LinkedIn – [Sushen Kumar](https://www.linkedin.com/in/sushen-kumar)
-- 📧 Mail : sushen2312@gmail.com  
-- 📷 Instagram – [@sushen_x](https://www.instagram.com/sushen_x)
+- 📧 Mail : sushen1907@gmail.com  
+- 📷 Instagram – [@sushen.pvt](https://www.instagram.com/sushen.pvt)
 - ☕ Buy Me a Coffee – [alivexd](https://www.buymeacoffee.com/alivexd)
 
 ---
@@ -74,5 +74,3 @@ ReconX is my contribution to make recon faster, smarter, and more accessible to 
 This project is currently **not open-source**.  
 Feel free to share feedback or suggest new tools — your ideas are always welcome!
 
-OPENAI_API_KEY=your_openai_key_here
-HUGGINGFACE_API_KEY=your_hf_key_here
