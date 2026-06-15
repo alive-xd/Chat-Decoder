@@ -27,7 +27,12 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[settings.CORS_ORIGIN, "http://localhost:3000"],
+    allow_origins=[
+        settings.CORS_ORIGIN,
+        "http://localhost:3000",
+        "https://chat-decoder-sable.vercel.app",
+        "https://chat-decoder-sable.vercel.app/"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
