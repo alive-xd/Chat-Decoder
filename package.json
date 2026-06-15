@@ -1,6 +1,6 @@
 {
   "name": "chat-decoder-monorepo",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "private": true,
   "scripts": {
     "build": "cd frontend && npm install && npm run build"
