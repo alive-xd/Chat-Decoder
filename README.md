@@ -1,50 +1,142 @@
-# Chat Decoder — Deployment Guide
+# Chat Decoder — AI-Powered WhatsApp Chat Analytics
 
-Follow these step-by-step instructions to deploy the Chat Decoder monorepo to production using **Railway** (backend) and **Vercel** (frontend).
+Chat Decoder is a privacy-first, high-fidelity monorepo application designed to analyze exported WhatsApp chat histories, extract emotional sentiment timelines, calculate relationship reciprocity dynamics, and enable local semantic search (Q&A) using Google Gemini and vector embeddings.
 
 ---
 
-## Step 1: Push the Monorepo to GitHub
-1. Create a new repository on GitHub (it can be public or private, as all credentials/secrets are excluded via `.gitignore`).
-2. Initialize git in your local root directory (if not already done) and push the code:
+## 🎨 Premium Visual Redesign & UI Highlights
+
+The application features a modern, high-contrast theme prioritizing typography, responsive layouts, and instant render times:
+* **Instant Lucide SVG Icons**: Replaced raw font-loading icons to prevent "Flash of Unstyled Text" (FOUT) during loading.
+* **Premium "How It Works" Flow**: Removed messy grid cards and preview grids in favor of a clean, step-by-step 3-column process workflow.
+* **Balanced Relationship Column Grid**: Features observation summary details side-by-side with response latency and message balance gauges to eliminate blank gaps.
+* **Dynamic Sidebar Privacy Banner**: Automatically shifts to fit page layout spacing based on active session status.
+* **Personalized Credits Link**: A clean footer line redirecting to the creator's Instagram profile `@sushen.raw`.
+
+---
+
+## 📂 Project Structure
+
+```
+├── backend/            # FastAPI python application server
+│   ├── app/            # Core logic, API routes, and ML/RAG pipelines
+│   └── requirements.txt# Python package dependencies
+├── frontend/           # Next.js 14 Web application interface
+│   ├── src/            # App routes, components, and hooks
+│   └── package.json    # Frontend Node package dependencies
+├── docs/images/        # High-fidelity project screenshots
+└── docker-compose.yml  # Docker environment setup script
+```
+
+---
+
+## 🚀 Local Development Setup
+
+To run both services locally, follow the instructions below:
+
+### Prerequisites
+* **Python** 3.10 or higher installed.
+* **Node.js** 18 or higher installed.
+
+---
+
+### 1. Backend Setup (FastAPI)
+
+1. Open a terminal and navigate to the `backend` folder:
    ```bash
-   git init
-   git add .
-   git commit -m "Initialize deployment config"
-   git remote add origin <your-github-repo-url>
-   git branch -M main
-   git push -u origin main
+   cd backend
    ```
 
+2. Create a virtual environment and activate it:
+   - **Windows (PowerShell)**:
+     ```powershell
+     python -m venv .venv
+     .venv\Scripts\Activate.ps1
+     ```
+   - **macOS / Linux**:
+     ```bash
+     python3 -m venv .venv
+     source .venv/bin/activate
+     ```
+
+3. Install all package dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+   *(Note: This installs `sentence-transformers` and `chromadb` for local vector databases).*
+
+4. Create a `.env` file inside the `backend/` folder:
+   ```env
+   GEMINI_API_KEY=your_gemini_api_key_here
+   SESSION_SECRET=a_long_random_secure_string
+   CORS_ORIGIN=http://localhost:3000
+   ```
+
+5. Run the FastAPI development server:
+   ```bash
+   uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+   ```
+   The API will be available at **`http://localhost:8000`**. You can view the swagger docs at `/docs`.
+
 ---
 
-## Step 2: Deploy the Backend to Railway
-1. Log into your [Railway Dashboard](https://railway.app/).
-2. Click **New Project** -> **Deploy from GitHub repo**, and select your repository.
-3. In the setup dialog, configure the following settings:
-   * **Root Directory**: `backend/`
-4. Add the following **Environment Variables** in the Railway variables tab:
-   * `GEMINI_API_KEY`: Your Google Gemini API key (starts with `AIzaSy`).
-   * `SESSION_SECRET`: A secure random string used to encrypt session tokens (e.g. any long random key).
-   * `CORS_ORIGIN`: Set this to `https://your-vercel-app.vercel.app` (you can update this in the next step once Vercel generates your frontend URL).
-5. Railway will automatically detect the `railway.toml` config, build your FastAPI backend, and generate a public URL (e.g., `https://your-railway-backend.up.railway.app`). Note this backend URL.
+### 2. Frontend Setup (Next.js)
+
+1. Open a new terminal window and navigate to the `frontend` folder:
+   ```bash
+   cd frontend
+   ```
+
+2. Install the node dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the Next.js development server:
+   ```bash
+   npm run dev
+   ```
+   The client will compile and be accessible at **`http://localhost:3000`**.
 
 ---
 
-## Step 3: Deploy the Frontend to Vercel
-1. Log into your [Vercel Dashboard](https://vercel.com/).
-2. Click **Add New** -> **Project**, and import the same GitHub repository.
-3. In the project configuration dialog:
-   * **Root Directory**: Select `frontend` (Vercel will auto-detect Next.js framework).
-4. Expand the **Environment Variables** section and add:
-   * `NEXT_PUBLIC_API_URL`: Set this to the public Railway backend URL generated in Step 2 (e.g. `https://your-railway-backend.up.railway.app`).
-5. Click **Deploy**. Vercel will build and launch your frontend, generating a public URL (e.g., `https://chat-decoder.vercel.app`). Note this URL.
+### 🐳 Run using Docker Compose
+
+Alternatively, you can run the entire stack (both frontend and backend) in Docker containers with a single command:
+
+1. Ensure Docker Desktop is running.
+2. In the root directory, run:
+   ```bash
+   docker-compose up --build
+   ```
+3. Once running, access the web app at `http://localhost:3000`.
 
 ---
 
-## Step 4: Update CORS_ORIGIN on Railway
-Once Vercel has generated your frontend site URL:
-1. Go back to your project in the **Railway Dashboard**.
-2. Select your backend service and click the **Variables** tab.
-3. Update the value of `CORS_ORIGIN` to match your Vercel frontend domain (e.g., `https://chat-decoder.vercel.app`).
-4. Railway will automatically redeploy the backend with the updated CORS origin allowed.
+## 📸 Working Screenshots
+
+Below are the high-fidelity screenshots demonstrating the refined user experience:
+
+### 1. Refined Landing Page (Clean Hero & Vector Icons)
+An instantly rendering landing page displaying the spark of conversational analysis without unstyled layout flashes:
+![Landing Page Hero](docs/images/landing_page_hero.png)
+
+### 2. Clean 3-Step Process Flow
+The premium step-by-step layout explaining how to securely export and parse chat history:
+![How It Works Section](docs/images/how_it_works_section.png)
+
+### 3. Analytics Dashboard Overview
+The main dashboard panel displaying word count milestones, sentiment indicators, and the chat upload modal:
+![Main Dashboard](docs/images/demo_dashboard.png)
+
+### 4. Balanced Relationship Health Card Grid
+观察与回应 latency observations placed side-by-side with metric dynamic gauges for a balanced design:
+![Relationship Metrics Grid](docs/images/relationship_page.png)
+
+### 5. Emotional Sentiment timelines
+Visual charts showing emotional tone changes, theme tags, and active timelines:
+![Emotional Timeline](docs/images/relationship_page_scroll.png)
+
+### 6. Dynamic Privacy Banner & Clean Footer
+The top banner shifts to adjust to the sidebar width, and the footer links cleanly to Instagram:
+![Footer & Privacy Banner](docs/images/landing_page_footer.png)

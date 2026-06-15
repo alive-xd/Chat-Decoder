@@ -29,9 +29,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         settings.CORS_ORIGIN,
-        "http://localhost:3000",
-        "https://chat-decoder-sable.vercel.app",
-        "https://chat-decoder-sable.vercel.app/"
+        "http://localhost:3000"
     ],
     allow_credentials=True,
     allow_methods=["*"],

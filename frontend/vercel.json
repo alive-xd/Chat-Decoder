@@ -1,6 +1,0 @@
-{
-  "framework": "nextjs",
-  "env": {
-    "NEXT_PUBLIC_API_URL": "https://chat-decoder-production.up.railway.app"
-  }
-}
