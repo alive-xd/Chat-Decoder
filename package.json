@@ -1,13 +1,8 @@
 {
   "name": "chat-decoder-monorepo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": true,
   "scripts": {
     "build": "cd frontend && npm install && npm run build"
-  },
-  "dependencies": {
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18"
   }
 }
