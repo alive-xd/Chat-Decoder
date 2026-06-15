@@ -1,5 +1,5 @@
 {
   "cleanUrls": true,
-  "buildCommand": "cd frontend && npm install && NEXT_PUBLIC_API_URL=https://chat-decoder-production.up.railway.app npm run build",
+  "buildCommand": "cd frontend && npm install && NEXT_PUBLIC_API_URL=https://comfortable-charisma-production-303a.up.railway.app npm run build",
   "outputDirectory": "frontend/out"
 }
