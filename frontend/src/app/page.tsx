@@ -103,6 +103,7 @@ export default function LandingPage() {
             <a className="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#privacy">Privacy</a>
             <a className="text-label-md font-label-md text-on-surface-variant hover:text-primary transition-colors" href="#faq">FAQ</a>
           </nav>
+          <button onClick={handleDemo} className="hidden md:flex text-label-md font-label-md text-on-surface-variant px-4 py-2 hover:bg-surface-container rounded-lg transition-all">Try Demo</button>
           <button className="hidden md:flex text-label-md font-label-md text-on-surface-variant px-4 py-2 hover:bg-surface-container rounded-lg transition-all">Local Mode</button>
           <button onClick={() => setShowUpload(true)} className="bg-primary text-on-primary px-6 py-2 rounded-lg font-label-md hover:opacity-90 transition-all scale-active:95">New Analysis</button>
         </div>
@@ -124,9 +125,13 @@ export default function LandingPage() {
             Upload your WhatsApp chat and let our sophisticated intelligence layer transform raw text into deep, actionable behavioral data.
           </p>
           <div className="flex flex-col md:flex-row justify-center gap-4 mb-20">
-            <button onClick={() => setShowUpload(true)} className="bg-primary-container text-on-primary-container px-10 py-4 rounded-xl font-headline-sm shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-3">
+            <button onClick={() => setShowUpload(true)} className="bg-primary text-on-primary px-10 py-4 rounded-xl font-headline-sm shadow-sm hover:shadow-md transition-all flex items-center justify-center gap-3">
               <Upload size={20} />
               Upload Chat
+            </button>
+            <button onClick={handleDemo} className="bg-surface border border-outline-variant text-on-surface-variant px-10 py-4 rounded-xl font-headline-sm shadow-sm hover:shadow-md hover:bg-surface-container transition-all flex items-center justify-center gap-3">
+              <Zap size={20} className="text-primary" />
+              Try Demo Mode
             </button>
           </div>
         </section>
