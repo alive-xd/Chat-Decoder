@@ -24,7 +24,7 @@ export default function HealthScoreCard({ health }: Props) {
         <span className="material-symbols-outlined" style={{ fontSize:16, color:'var(--primary)' }}>favorite</span>
         <span style={{ fontSize:11, fontWeight:700, letterSpacing:'0.07em', color:'var(--on-surface-variant)', textTransform:'uppercase' }}>Relationship Health</span>
       </div>
-      <div style={{ padding:20, display:'flex', gap:24, alignItems:'center', flexWrap:'wrap' }}>
+      <div style={{ padding:20, display:'flex', flexDirection:'column', alignItems:'center', gap:20 }}>
         {/* Gauge */}
         <div style={{ position:'relative', display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
           <svg width={144} height={144} viewBox="0 0 144 144" style={{ transform:'rotate(-90deg)' }}>
@@ -40,7 +40,7 @@ export default function HealthScoreCard({ health }: Props) {
         </div>
 
         {/* Observations */}
-        <div style={{ flex:1, minWidth:0 }}>
+        <div style={{ width:'100%' }}>
           <span style={{ display:'inline-block', padding:'4px 12px', borderRadius:99, fontSize:12, fontWeight:700, marginBottom:14, background:`${color}18`, color }}>
             {label}
           </span>
